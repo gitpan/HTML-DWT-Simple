@@ -6,9 +6,9 @@ SYNOPSIS
   
       $template = new HTML::DWT::Simple(filename => "file.dwt");    
       %dataHash = (
-                    doctitle => 'DWT Generated',
-                    leftcont => 'some HTML content here'    
-                    );  
+                   doctitle => 'DWT Generated',
+                   leftcont => 'some HTML content here'     
+                   );  
       $template->param(%dataHash);
       $html = $template->output();
 
@@ -24,12 +24,21 @@ METHODS
 
       new HTML::DWT(
                     filename => "file.dwt",
-                    );
+                    associate => $q,
+                   );
 
     Creates and returns a new HTML::DWT object based on the Dreamweaver
     template 'file.dwt' (can specify a relative or absolute path). The
     Second instance is recommended, although the first style is still
-    supported for backwards compatability with versions before 2.05.
+    supported for backwards compatability with versions of HTML::DWT before
+    2.05.
+
+    associate: The associate option allows the template to inherit parameter
+    values from other objects. The object associated with the template must
+    have a param() method which works like HTML::DWT::Simple's param(). Both
+    CGI and HTML::Template fit this profile. To associate another object,
+    create it and pass the reference scalar to HTML::DWT::Simple's new()
+    method under the associate option (see above).
 
   param()
 
@@ -54,9 +63,9 @@ METHODS
     If called with no parameters, param() returns a list of all field names.
 
     NOTE: All Dreamweaver templates store the HTML page's title in a field
-    named 'doctitle'. HTML::DWT will accept a raw title (without <title>
-    tags) and will add the appropriate tags if the content of the 'doctitle'
-    field should require them.
+    named 'doctitle'. HTML::DWT::Simple will accept a raw title (without
+    <title> tags) and will add the appropriate tags if the content of the
+    'doctitle' field should require them.
 
     This is a HTML::Template compatible method.
 

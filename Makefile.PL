@@ -4,5 +4,5 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     'NAME'		=> 'HTML::DWT::Simple',
     'VERSION_FROM'	=> 'Simple.pm', # finds $VERSION
-    'PREREQ_PM'		=> {Test::More => 0.18}, # e.g., Module::Name => 1.1
+    'PREREQ_PM'		=> {}, # e.g., Module::Name => 1.1
 );
