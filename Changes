@@ -1,5 +1,8 @@
 Revision history for Perl extension HTML::DWT::Simple.
 
+1.01  Mon Mar 25 17:03:48 2002
+	- minor bugfix and documentation changes
+
 1.00  Wed Mar 13 13:33:04 2002
 	- original version implementation
 

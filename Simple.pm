@@ -2,7 +2,7 @@ package HTML::DWT::Simple;
 #############################################################
 #  HTML::DWT::Simple
 #  Whyte.Wolf DreamWeaver HTML Template Module (Simple)
-#  Version 1.00
+#  Version 1.01
 #
 #  Copyright (c) 2002 by S.D. Campbell <whytwolf@spots.ab.ca>
 #
@@ -37,7 +37,7 @@ use strict;
 use vars qw($errmsg $VERSION @ISA @EXPORT_OK  
 	    $NOTICE %DWT_FIELDS %DWT_VALUES);
 
-$VERSION = '1.00';
+$VERSION = '1.01';
 
 $NOTICE = "\n<!-- Generated using HTML::DWT::Simple version " . $VERSION . " -->\t\t\n";
 $NOTICE .= "<!-- HTML::DWT::Simple Copyright (c) 2002 Sean Campbell -->\t\n";
@@ -136,7 +136,7 @@ sub param {
     } else {
 	my %params = @_;   
     	foreach my $key (keys %params) {
-		if ($key eq 'doctitle' && !($params{$key}=~/<title>(\w*)<\/title>/i)){
+		if ($key eq 'doctitle' && !($params{$key}=~/<title>(.*?)<\/title>/i)){
 		    $DWT_VALUES{'doctitle'} = "<title>" . $params{$key} . "</title>";
 		} else {
 		    $DWT_VALUES{$key} = $params{$key};
@@ -235,7 +235,8 @@ template with values from a CGI script.
 Creates and returns a new HTML::DWT object based on the Dreamweaver
 template 'file.dwt' (can specify a relative or absolute path).  The
 Second instance is recommended, although the first style is still 
-supported for backwards compatability with versions before 2.05.
+supported for backwards compatability with versions of HTML::DWT
+before 2.05.
 
 =head2 param()
 
@@ -260,9 +261,9 @@ if no value has been set.
 If called with no parameters, param() returns a list of all field names.
 
 NOTE: All Dreamweaver templates store the HTML page's title in a field
-named 'doctitle'.  HTML::DWT will accept a raw title (without <title>
-tags) and will add the appropriate tags if the content of the 'doctitle'
-field should require them.
+named 'doctitle'.  HTML::DWT::Simple will accept a raw title (without 
+<title> tags) and will add the appropriate tags if the content of the 
+'doctitle' field should require them.
 
 This is a HTML::Template compatible method.
 
